@@ -1,4 +1,6 @@
-﻿using API.Persistence.Context;
+﻿using API.Application.Interfaces.Repositories;
+using API.Persistence.Context;
+using API.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,5 +12,6 @@ public static class Registration
     {
         services.AddDbContext<AppDbContext>(opt => 
         opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
     }
 }
