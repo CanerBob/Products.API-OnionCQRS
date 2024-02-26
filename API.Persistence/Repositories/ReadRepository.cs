@@ -8,7 +8,7 @@ namespace API.Persistence.Repositories;
 public class ReadRepository<T> : IReadRepository<T> where T : class, IEntityBase, new()
 {
     private readonly DbContext _dbContext;
-    public ReadRepository(DbContext dbContext, DbContext context)
+    public ReadRepository(DbContext context)
     {
         this._dbContext = context;
     }

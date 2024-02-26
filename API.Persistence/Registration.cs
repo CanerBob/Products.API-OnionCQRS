@@ -1,6 +1,8 @@
 ﻿using API.Application.Interfaces.Repositories;
+using API.Application.Interfaces.UnitOfWorks;
 using API.Persistence.Context;
 using API.Persistence.Repositories;
+using API.Persistence.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,5 +16,6 @@ public static class Registration
         opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
         services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 }
